@@ -101,6 +101,8 @@ public class CareGiverAddCareReciever extends AppCompatActivity implements Dialo
         });
     }
 
+
+
     public void openDialog() {
         Dialog exampleDialog = new Dialog();
         exampleDialog.show(getSupportFragmentManager(), "example dialog");

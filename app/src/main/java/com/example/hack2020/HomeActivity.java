@@ -317,8 +317,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     location.getLatitude()
             );
 
-            HashMap<String, Location> CurrentLocation = new HashMap<>();
-            CurrentLocation.put("Current location",location);
+            HashMap<String, Double> CurrentLocation = new HashMap<>();
+            CurrentLocation.put("longitude",location.getLongitude());
+            CurrentLocation.put("latitude",location.getLatitude());
 
             CollectionReference collectionReference = db.collection("Users");
             collectionReference
