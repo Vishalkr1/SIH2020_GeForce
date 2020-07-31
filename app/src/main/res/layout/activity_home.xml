@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="331dp"
+        android:layout_height="39dp"
+        android:autoText="false"
+        android:text="Welcome! You are signed in"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:typeface="monospace"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053"
+        android:gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="171dp"
+        android:layout_height="62dp"
+        android:background="#4F958E"
+        android:text="Log Out"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/view_items_screen"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/view_items_screen"
+        app:layout_constraintTop_toBottomOf="@+id/view_items_screen"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/view_items_screen"
+        android:layout_width="171dp"
+        android:layout_height="62dp"
+        android:background="#D27070"
+        android:onClick="btnRetrieveLocation"
+        android:text="View database"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
+
+    <EditText
+        android:id="@+id/temperature"
+        android:layout_width="180dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Body temperature(ᵒC)"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/heartRate"
+        android:layout_width="182dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Heart rate"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/temperature"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/temperature"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <Button
+        android:id="@+id/setValue"
+        android:layout_width="136dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="88dp"
+        android:background="#7F5CC5"
+        android:text="Save"
+        android:textColor="#FCFFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/view_items_screen"
+        app:layout_constraintEnd_toEndOf="@+id/heartRate"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/heartRate"
+        app:layout_constraintTop_toBottomOf="@+id/heartRate"
+        app:layout_constraintVertical_bias="0.611" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
