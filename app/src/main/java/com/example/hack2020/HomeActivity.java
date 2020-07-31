@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Button btnLogout, set;
     EditText temperature;
     EditText heartRate;
-    Button viewData;
+    Button button3;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -96,15 +96,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
             }
         });
-        viewData = findViewById(R.id.view_items_screen);
-        viewData.setOnClickListener(new View.OnClickListener() {
+        button3 = findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent database = new Intent(HomeActivity.this, ViewDatabase.class);
-                startActivity(database);
+                openposthelpactivity();
             }
         });
-
         set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,6 +137,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                                             });
             }
         });
+    }
+
+    private void openposthelpactivity() {
+        Intent intent = new Intent(this,posthelp.class);
+        startActivity(intent);
+
     }
 
     public void btnRetrieveLocation(View view) {
