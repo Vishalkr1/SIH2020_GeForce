@@ -37,7 +37,7 @@ A help button is present on the care receiver side that alarms the care taker in
 1. Nitesh Chaurasiya
 1. Anika Sharma
 1. Simran Singh
-1. Razat Baghel
+1. Rajat Baghel
 1. Anurag Agarwal 
 ## Technical Stack
 Android Studio (Open Source platform for app development),Amazon Web Services, Google Map API,XML,Java
