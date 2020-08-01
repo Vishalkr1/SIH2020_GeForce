@@ -23,7 +23,7 @@ A help button is present on the care receiver side that alarms the care taker in
 ## Description of Application
 #### Care Taker Screen
 1. Login Screen
-![alt-text](readme-ss/ss1.jpeg)
+![alt-text](readme-ss/ss1.jpeg){:height="100px" width="50px"}
 1. Add Care receivers
 1. List of care receivers
 1. Get Location of Care receivers
