@@ -22,32 +22,32 @@ A help button is present on the care receiver side that alarms the care taker in
 
 ## Description of Application
 
-#### Care Taker Screen
-1. Login Screen
-![alt-text](./readme-ss/ss1.jpeg)
+### Care Taker Screen
+#### 1. Login Screen
+<img src="./readme-ss/ss1.jpeg" width="40%" height="50%">
 
-2. Add Care receivers
-![alt-text](./readme-ss/ss2.jpeg)
+#### 2. Add Care receivers
+<img src="./readme-ss/ss2.jpeg" width="40%" height="50%">
 
-3. List of care receivers
-![alt-text](./readme-ss/ss3.jpeg)
+#### 3. List of care receivers
+<img src="./readme-ss/ss3.jpeg" width="40%" height="50%">
 
-4. Get Location of Care receivers
-![alt-text](./readme-ss/ss4.jpeg)
+#### 4. Get Location of Care receivers
+<img src="./readme-ss/ss4.jpeg" width="40%" height="50%">
 
-5. Map displaying location of care receivers
-![alt-text](./readme-ss/ss5.jpeg)
+#### 5. Map displaying location of care receivers
+<img src="./readme-ss/ss5.jpeg" width="40%" height="50%">
 
-6. Emergency notification from care receivers
-![alt-text](./readme-ss/ss6.jpeg)
+#### 6. Emergency notification from care receivers
+<img src="./readme-ss/ss6.jpeg" width="40%" height="50%">
 
 
-#### Care Receiver Screen
-1. Login Screen
-![alt-text](./readme-ss/ss1.jpeg)
+### Care Receiver Screen
+#### 1. Login Screen
+<img src="./readme-ss/ss1.jpeg" width="40%" height="50%">
 
-2. Define Health Parameters and Help Button
-![alt-text](./readme-ss/ss7.jpeg)
+#### 2. Define Health Parameters and Help Button
+<img src="./readme-ss/ss7.jpeg" width="40%" height="50%">
 
 ## Authors
 1. Vishal Kumar 
