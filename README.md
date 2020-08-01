@@ -23,10 +23,10 @@ A help button is present on the care receiver side that alarms the care taker in
 ## Description of Application
 #### Care Taker Screen
 1. Login Screen
-1. Add Care Takers
-1. List of care takers
-1. Get Location of Care recievers
-1. Map displaying location of care recievers
+1. Add Care receivers
+1. List of care receivers
+1. Get Location of Care receivers
+1. Map displaying location of care receivers
 #### Care Receiver Screen
 1. Login Screen
 2. Define Health Parameters
