@@ -27,9 +27,10 @@ A help button is present on the care receiver side that alarms the care taker in
 1. List of care receivers
 1. Get Location of Care receivers
 1. Map displaying location of care receivers
+1. Emergency notification from care receivers
 #### Care Receiver Screen
 1. Login Screen
-2. Define Health Parameters
+2. Define Health Parameters and Help Button
 
 ## Authors
 1. Vishal Kumar 
