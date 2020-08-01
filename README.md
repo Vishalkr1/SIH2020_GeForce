@@ -11,7 +11,7 @@ It is an application that supports both care takers and care recievers.The major
    2. **Body Temperature Treacking**
 1. **Medicine Scheduling**
 1. **Alarm in case of emergency**
-1. **Fall Detection**
+
 
 Drishti first establishes a secure connection between care reciever and care taker.
 The care taker designates a geofence around a loaction that care receiver resides in. 
