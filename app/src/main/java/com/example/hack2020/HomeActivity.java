@@ -42,7 +42,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -54,6 +53,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import users.User;
 
 public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnClickListener,
         OnMapReadyCallback,
@@ -78,6 +79,7 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
     private List<String>list;
     String TAG = "Sample";
     double phoneNum;
+    User self;
 
     Button btnLogout, set;
     EditText temperature;
@@ -95,6 +97,15 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
 
         mAuth = FirebaseAuth.getInstance();
         this.db = FirebaseFirestore.getInstance();
+        db.collection("Users").document(mAuth.getCurrentUser().getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    self = new User(documentSnapshot.getString("name"),documentSnapshot.getString("phoneNum"),documentSnapshot.getString("email"),documentSnapshot.getString("userType"));
+                }
+            }
+        });
 
 
 
@@ -115,12 +126,12 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
         });
         button3 = findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendsmsmessage();
-                openposthelpactivity();
-            }
-        });
+                                       @Override
+                                       public void onClick(View view) {
+                                           openposthelpactivity();
+                                           sendsmsmessage();
+                                       }
+                                   });
 
         set.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +169,7 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
         });
     }
 
-    private void sendsmsmessage() {
+    public void sendsmsmessage() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -177,14 +188,25 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
             case MY_PERMISSIONS_REQUEST_SEND_SMS: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage("9598511954", null, "Assiatance", null, null);
-                    Toast.makeText(getApplicationContext(), "SMS sent.",
-                            Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "SMS faild, please try again.", Toast.LENGTH_LONG).show();
-                    return;
+                    db.collection("Users").document(mAuth.getCurrentUser().getEmail()).collection("people").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    String message = "Your Care Reciever Requires Immediate Assistance";
+                                    SmsManager mysmsmanager = SmsManager.getDefault();
+                                    mysmsmanager.sendTextMessage((document.getString("phoneNum")), null, message, null, null);
+                                    Toast.makeText(getApplicationContext(), "SMS sent.",
+                                            Toast.LENGTH_LONG).show();
+                                }
+
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        "SMS failed, please try again.", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+                        }
+                            });
                 }
             }
         }
