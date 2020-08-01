@@ -21,16 +21,33 @@ Medicine scheduling is another feature where in the care taker is notified time 
 A help button is present on the care receiver side that alarms the care taker in case of emergency, when pressed.
 
 ## Description of Application
+
 #### Care Taker Screen
 1. Login Screen
-1. Add Care receivers
-1. List of care receivers
-1. Get Location of Care receivers
-1. Map displaying location of care receivers
-1. Emergency notification from care receivers
+![alt-text](./readme-ss/ss1.jpeg)
+
+2. Add Care receivers
+![alt-text](./readme-ss/ss2.jpeg)
+
+3. List of care receivers
+![alt-text](./readme-ss/ss3.jpeg)
+
+4. Get Location of Care receivers
+![alt-text](./readme-ss/ss4.jpeg)
+
+5. Map displaying location of care receivers
+![alt-text](./readme-ss/ss5.jpeg)
+
+6. Emergency notification from care receivers
+![alt-text](./readme-ss/ss6.jpeg)
+
+
 #### Care Receiver Screen
 1. Login Screen
+![alt-text](./readme-ss/ss1.jpeg)
+
 2. Define Health Parameters and Help Button
+![alt-text](./readme-ss/ss7.jpeg)
 
 ## Authors
 1. Vishal Kumar 
