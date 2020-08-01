@@ -28,4 +28,5 @@
     <string name="input_error_phone">Enter phone no</string>
     <string name="input_error_phone_invalid">Invalid phone number</string>
     <string name="title_activity_maps2">Map</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
