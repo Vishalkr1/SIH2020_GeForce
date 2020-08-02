@@ -71,6 +71,20 @@
         android:textSize="15sp" />
 
     <EditText
+        android:id="@+id/cnfm_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/et_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="@string/cnfm_password"
+        android:inputType="textPassword"
+        android:padding="15dp"
+        android:textSize="15sp" />
+
+    <EditText
         android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
