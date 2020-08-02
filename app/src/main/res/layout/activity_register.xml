@@ -7,31 +7,6 @@
     android:orientation="vertical"
     tools:context=".RegisterActivity">
 
-    <TextView
-        android:id="@+id/tv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/register"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/indigo_daisy"
-        android:layout_marginTop="60dp"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="25dp" />
-
-    <TextView
-        android:id="@+id/tv_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tag"
-        android:textSize="17sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="25dp" />
-
     <EditText
         android:id="@+id/et_name"
         android:layout_width="match_parent"
@@ -78,13 +53,13 @@
         android:id="@+id/et_repassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/re_type_password"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:padding="15dp"
-        android:fontFamily="@font/roboto_regular"
-        android:inputType="textPassword"
         android:background="@drawable/et_custom"
+        android:fontFamily="@font/roboto_regular"
+        android:hint="@string/re_type_password"
+        android:inputType="textPassword"
+        android:padding="15dp"
         android:textSize="15sp" />
 
     <RelativeLayout
