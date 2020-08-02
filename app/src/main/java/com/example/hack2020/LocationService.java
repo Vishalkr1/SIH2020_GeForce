@@ -16,11 +16,17 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LocationService extends Service {
 
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationCallback locationCallback;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Nullable
     @Override
@@ -32,11 +38,24 @@ public class LocationService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
+
+//            double lat = db.collection("Users").document(mAuth.getCurrentUser().getEmail())
+//                    .collection("My data").document("Current location").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+//
+//
+//                        }
+//                    })
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 super.onLocationResult(locationResult);
+//                double new_lat = locationResult.getLastLocation().setLatitude();
+//                double new_long = locationResult.getLastLocation().setLongitude();
                 Log.d("mylog", "Latitude is: " + locationResult.getLastLocation().getLatitude() + ", " + "Longitude is: " + locationResult.getLastLocation().getLongitude());
             }
         };
