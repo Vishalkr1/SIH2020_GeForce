@@ -51,7 +51,7 @@ public class CareGiverAddCareReciever extends AppCompatActivity implements Dialo
         mAuth = FirebaseAuth.getInstance();
         this.db = FirebaseFirestore.getInstance();
 
-        button = (FloatingActionButton) findViewById(R.id.addUser);
+        button = findViewById(R.id.addUser);
         careReceiverListView = findViewById(R.id.care_receiver_listview);
         getCareTakers();
 
@@ -125,15 +125,33 @@ public class CareGiverAddCareReciever extends AppCompatActivity implements Dialo
                                 data.put("phoneNum", documentSnapshot.getString("phoneNum"));
                                 db.collection("Users").document(mAuth.getCurrentUser().getEmail())
                                         .collection("people").document(CareReceiverEmail).set(data);
-                                HashMap<String, String> data2 = new HashMap<>();
-                                data2.put("email", mAuth.getCurrentUser().getEmail());
-                                db.collection("Users").document(CareReceiverEmail).collection("people")
-                                        .document(mAuth.getCurrentUser().getEmail()).set(data2);
                                 getCareTakers();
                                 adapter.notifyDataSetChanged();
                             }
                         }
                     }
+
+                    DocumentReference docRef = db.collection("Users").document(mAuth.getCurrentUser().getEmail());
+                            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot documentSnap = task.getResult();
+                                        if (documentSnap.exists()) {
+                                            if (documentSnap.getString("userType").equals("Care Taker")) {
+                                                HashMap<String, String> data = new HashMap<>();
+                                                data.put("name", documentSnap.getString("name"));
+                                                data.put("phoneNum", documentSnap.getString("phoneNum"));
+                                                db.collection("Users").document(CareReceiverEmail)
+                                                        .collection("people").document(mAuth.getCurrentUser().getEmail()).set(data);
+                                                getCareTakers();
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        }
+                                    }
+
+                                }
+                            });
                 }
             });
         }

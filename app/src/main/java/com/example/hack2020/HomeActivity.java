@@ -197,10 +197,13 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
+                                list = new ArrayList<>();
                                 for (QueryDocumentSnapshot document : task.getResult()) {
+                                    list.add(document.getId());
+                                    String contact = db.collection("Users").document(list.get(0)).collection("phoneNum").toString();
                                     String message = "Your Care Reciever Requires Immediate Assistance";
                                     SmsManager mysmsmanager = SmsManager.getDefault();
-                                    mysmsmanager.sendTextMessage((document.getString("phoneNum")), null, message, null, null);
+                                    mysmsmanager.sendTextMessage((contact), null, message, null, null);
                                     Toast.makeText(getApplicationContext(), "SMS sent.",
                                             Toast.LENGTH_LONG).show();
                                 }
@@ -221,13 +224,6 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
     private void openposthelpactivity() {
         Intent intent = new Intent(this,posthelp.class);
         startActivity(intent);
-
-    }
-
-    public void btnRetrieveLocation(View view) {
-
-        startActivity(new Intent(getApplicationContext(), RetrieveMapActivity.class));
-
 
     }
 
