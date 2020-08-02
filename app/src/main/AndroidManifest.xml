@@ -43,6 +43,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".RetrieveMapActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name="posthelp" />
         <activity android:name=".Login" />
         <activity android:name=".posthelp"/>
         <activity android:name=".MainActivity">
