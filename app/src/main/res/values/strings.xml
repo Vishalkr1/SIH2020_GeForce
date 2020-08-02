@@ -28,6 +28,6 @@
     <string name="input_error_phone">Enter phone no</string>
     <string name="input_error_phone_invalid">Invalid phone number</string>
     <string name="title_activity_maps2">Map</string>
-    <string name="post_help_msg">Your Care Takers Are Notified Help Will reach You As soon as Possible Consider Using These Options</string>
+    <string name="post_help_msg">Your Care Reciever needs immediate assistance</string>
     <string name="help_msg">"Your Care Reciever "</string>
 </resources>
