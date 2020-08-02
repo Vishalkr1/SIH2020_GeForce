@@ -2,6 +2,7 @@ package com.example.hack2020;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText editTextName, editTextEmail, editTextPassword, editTextPhone;
+    private EditText editTextName, editTextEmail, editTextPassword, editTextPhone,editTextConfrimPassword;
     private Button login;
     private Spinner userTypeSpinner;
     private String userType;
@@ -52,6 +53,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         editTextPassword = findViewById(R.id.et_password);
         editTextPhone = findViewById(R.id.phone);
         login = findViewById(R.id.button);
+        editTextConfrimPassword = findViewById(R.id.cnfm_password);
         userTypeSpinner = findViewById(R.id.user_type);
 
 
@@ -91,8 +93,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         final String name = editTextName.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        String cnf_passwrd = editTextConfrimPassword.getText().toString().trim();
         final String phone = editTextPhone.getText().toString().trim();
         final String userType = userTypeSpinner.getSelectedItem().toString().trim();
+
         boolean error = false;
 
         if (name.isEmpty()) {
@@ -130,6 +134,28 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
+        if (cnf_passwrd.isEmpty()) {
+            error = true;
+            editTextConfrimPassword.setError(getString(R.string.input_error_password));
+            editTextConfrimPassword.requestFocus();
+            return;
+        }
+
+        if (cnf_passwrd.length() < 6) {
+            error = true;
+            editTextConfrimPassword.setError(getString(R.string.input_error_password_length));
+            editTextConfrimPassword.requestFocus();
+            return;
+        }
+        if (!TextUtils.isEmpty(password) && !TextUtils.isEmpty(cnf_passwrd))
+        {
+            if(password.equals(cnf_passwrd) == false)
+            {
+                error = true;
+                Toast.makeText(Login.this,"Password Does not Match",Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         if (phone.isEmpty()) {
             error = true;
             editTextPhone.setError(getString(R.string.input_error_phone));
