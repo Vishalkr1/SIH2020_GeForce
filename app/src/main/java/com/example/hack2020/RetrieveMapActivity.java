@@ -218,7 +218,7 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
     }
 
     private void handleMapLongClick(LatLng latLng) {
-        mMap.clear();
+       // mMap.clear();
         getCurrentLocation();
         start_latitude = latLng.latitude;
         start_longitude = latLng.longitude;
@@ -342,6 +342,5 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
     }
-
 }
 

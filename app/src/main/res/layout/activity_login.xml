@@ -17,7 +17,6 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/loginrnd"
         android:layout_centerHorizontal="true"
-        android:shadowRadius=""
         android:fontFamily="@font/roboto_regular"
         android:text="New user!! Register here"
         android:textColor="@android:color/white" />
