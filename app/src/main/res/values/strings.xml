@@ -30,4 +30,5 @@
     <string name="title_activity_maps2">Map</string>
     <string name="post_help_msg">Your Care Reciever needs immediate assistance</string>
     <string name="help_msg">"Your Care Reciever "</string>
+    <string name="title_activity_maps">Maps</string>
 </resources>
