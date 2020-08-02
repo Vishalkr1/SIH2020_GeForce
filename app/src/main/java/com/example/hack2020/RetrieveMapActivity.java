@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -74,6 +75,7 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
     private double start_latitude, start_longitude;
     private double end_latitude, end_longitude;
     private String current_user;
+    private double lmlatitude, lmlongitude;
 
 
 
@@ -84,9 +86,8 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
         mAuth = FirebaseAuth.getInstance();
         this.db = FirebaseFirestore.getInstance();
         current_user = mAuth.getCurrentUser().getEmail();
-
-        mSearch = (AutoCompleteTextView) findViewById(R.id.input_search);
         imageButton = (ImageView) findViewById(R.id.imageButton);
+
         bundle = getIntent().getExtras();
         Log.d(TAG, "onCreate: " + bundle.getString("CRemail"));
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -113,20 +114,21 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
         mMap = googleMap;
         this.latitude = 28.6139391;
         this.longitude = 77.2068325;
+
         getCurrentLocation();
-
-
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getCurrentLocation();
             }
         });
-        getLandmark();
         mMap.setOnMapLongClickListener(this);
+        this.lmlatitude = 28.6139;
+        this.lmlongitude = 77.2090;
+        getLandmark();
     }
 
-    private  void getCurrentLocation(){
+    private  LatLng getCurrentLocation(){
 
         db.collection("Users").document(bundle.getString("CRemail"))
                 .collection("My data")
@@ -155,6 +157,7 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
 
                     }
                 });
+        return location;
 
     }
 
@@ -238,6 +241,7 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
         CollectionReference collectionReference = db.collection("Users");
                 collectionReference.document(mAuth.getCurrentUser().getEmail())
                 .collection("people").document(bundle.getString("CRemail"))
+                        .collection("landmark").document("landmark")
                 .set(landmark).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -256,8 +260,9 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
 
     private void getLandmark(){
 
+
         db.collection("Users").document(mAuth.getCurrentUser().getEmail()).collection("people")
-                .document(bundle.getString("CRemail")).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                .document(bundle.getString("CRemail")).collection("landmark").document("landmark").addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
 
@@ -266,13 +271,15 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
                     return;
                 }
                 if (documentSnapshot != null) {
-                    latitude = documentSnapshot.getDouble("latitude");
-                    longitude = documentSnapshot.getDouble("longitude");
-                    Log.d(TAG, "onEvent: " + longitude);
+                    if (documentSnapshot.contains("latitude") && documentSnapshot.contains("longitude")) {
+                        lmlatitude = documentSnapshot.getDouble("latitude");
+                        lmlongitude = documentSnapshot.getDouble("longitude");
+                        Log.d(TAG, "onEvent: " + longitude);
 
-                    LatLng location = new LatLng(documentSnapshot.getDouble("latitude"), documentSnapshot.getDouble("longitude"));
-                    onMapLongClick(location);
-                } else {
+                        LatLng location = new LatLng(documentSnapshot.getDouble("latitude"), documentSnapshot.getDouble("longitude"));
+                        onMapLongClick(location);
+                    }
+                }else {
                     Log.e(TAG, "onEvent: Document snapshot was null");
                 }
 
@@ -330,15 +337,16 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
             channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DESCRIPTION");
             mNotificationManager.createNotificationChannel(channel);
         }
+        Intent intent = new Intent(getApplicationContext(), RetrieveMapActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
                 .setSmallIcon(R.drawable.ic_baseline_notifications_24) // notification icon
                 .setContentTitle(title) // title for notification
                 .setContentText(Content)// message for notification
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setFullScreenIntent(pi, true)
                 .setAutoCancel(true); // clear notification after click
-        Intent intent = new Intent(getApplicationContext(), RetrieveMapActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
     }
