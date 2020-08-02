@@ -45,7 +45,7 @@
         <activity android:name=".HomeActivity" />
         <activity android:name="posthelp" />
         <activity android:name=".Login" />
-        <activity android:name=".posthelp"/>
+     
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
