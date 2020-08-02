@@ -36,8 +36,7 @@
             android:value="AIzaSyDfALSt2YyI57RHJPKME2CNUtyuyZXbBV8" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:name=".MapsActivity"/>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".CareGiverAddCareReciever" />
         <activity android:name=".IntermediateActivity" />
@@ -45,7 +44,6 @@
         <activity android:name=".RetrieveMapActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".posthelp"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
