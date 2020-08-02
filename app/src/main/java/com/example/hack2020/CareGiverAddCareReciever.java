@@ -161,14 +161,3 @@ public class CareGiverAddCareReciever extends AppCompatActivity implements Dialo
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-

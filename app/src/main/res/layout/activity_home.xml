@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/view_items_screen"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -84,13 +84,13 @@
         android:background="#7F5CC5"
         android:text="Save"
         android:textColor="#FCFFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/view_items_screen"
         app:layout_constraintEnd_toEndOf="@+id/heartRate"
         app:layout_constraintStart_toStartOf="@+id/heartRate"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/view_items_screen"
         android:layout_width="294dp"
         android:layout_height="125dp"
         android:layout_marginStart="76dp"

@@ -124,20 +124,25 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
                 finish();
             }
         });
-        button3 = findViewById(R.id.button3);
+        button3 = findViewById(R.id.view_items_screen);
         button3.setOnClickListener(new View.OnClickListener() {
-                                       @Override
-                                       public void onClick(View view) {
-                                           openposthelpactivity();
-                                           sendsmsmessage();
-                                       }
-                                   });
+            @Override
+            public void onClick(View view) {
+                openposthelpactivity();
+                Toast.makeText(HomeActivity.this,"abcd",Toast.LENGTH_SHORT).show();
+                sendsmsmessage();
+                Toast.makeText(HomeActivity.this,"efgh",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String temp = temperature.getText().toString();
                 final String HearRate = heartRate.getText().toString();
+                Intent i=new Intent(HomeActivity.this, DashboardActivity.class);
+                i.putExtra("teh",temp);
+                i.putExtra("rate",HearRate);
                 HealthdataHelper health = new HealthdataHelper(
                         temp + "ᵒC",
                         HearRate + "bpm"
@@ -148,23 +153,23 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
                 healthParam.put("Heart rate", HearRate + "BPM");
 
                 CollectionReference collectionReference = db.collection("Users");
-                                    collectionReference
-                                            .document(mAuth.getCurrentUser().getEmail())
-                                            .collection("My data")
-                                            .document("Health params")
-                                            .set(healthParam)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Log.d(TAG, "Data Addition Successful");
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Log.d(TAG,"Data addition failed" + e.toString());
-                                                }
-                                            });
+                collectionReference
+                        .document(mAuth.getCurrentUser().getEmail())
+                        .collection("My data")
+                        .document("Health params")
+                        .set(healthParam)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "Data Addition Successful");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(TAG,"Data addition failed" + e.toString());
+                            }
+                        });
             }
         });
     }
@@ -202,11 +207,11 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
 
                             } else {
                                 Toast.makeText(getApplicationContext(),
-                                        "SMS failed, please try again.", Toast.LENGTH_LONG).show();
+                                        "SMS faild, please try again.", Toast.LENGTH_LONG).show();
                                 return;
                             }
                         }
-                            });
+                    });
                 }
             }
         }

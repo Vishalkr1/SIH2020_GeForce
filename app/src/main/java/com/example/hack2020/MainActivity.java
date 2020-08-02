@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
+
 //    public Login(FirebaseAuth.AuthStateListener mAuthStateListener) {
 //        this.mAuthStateListener = mAuthStateListener;
 //    }

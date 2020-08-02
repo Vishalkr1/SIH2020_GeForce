@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -150,16 +151,26 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
             if(!error)
             {
+                final FirebaseAuth firebaseAuth =  FirebaseAuth.getInstance();
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 // If email is valid and not in use
                                 if (task.isSuccessful()) {
+                                    firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(Login.this,"Logeed in",Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                                     String userId = mAuth.getCurrentUser().getUid();
                                     UserInformation user = new UserInformation(name, email, userType, userId);
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success");
+
                                     FirebaseUser CurrentUser = mAuth.getCurrentUser();
                                     // Creates a new user in the database
                                     HashMap<String, String> data = new HashMap<>();
@@ -200,9 +211,5 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
 
     }
-
-
-
-
 
 }
