@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-
     <Button
         android:id="@+id/logout"
         android:layout_width="60dp"
