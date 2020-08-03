@@ -11,15 +11,16 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_nobg"
         android:label="DRISHTI"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@drawable/logo_nobg"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -33,17 +34,25 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDfALSt2YyI57RHJPKME2CNUtyuyZXbBV8" />
+            android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"/>
+            android:name=".DirectionMap"
+            android:label="@string/title_activity_direction_map"></activity>
+        <activity android:name=".ApproachCareReceiver" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".MapsActivity" />
         <activity android:name=".DashboardActivity" />
         <activity android:name=".CareGiverAddCareReciever" />
-        <activity android:name=".IntermediateActivity" />
+        <activity android:name=".IntermediateActivity" /> <!-- android:theme="@style/Theme.Transparent"/> -->
         <activity android:name=".RegisterActivity" />
         <activity android:name=".RetrieveMapActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name="posthelp" />
+        <activity android:name=".posthelp" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">
             <intent-filter>

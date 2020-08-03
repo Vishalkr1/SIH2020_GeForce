@@ -9,8 +9,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -18,6 +28,8 @@ public class DashboardActivity extends AppCompatActivity {
     TextView textView;
     Button btn;
     public Bundle bundle;
+    FirebaseFirestore db;
+    FirebaseAuth mAuth;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -27,8 +39,20 @@ public class DashboardActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView2);
         btn = findViewById(R.id.retreiveMap);
         bundle = getIntent().getExtras();
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         if(bundle != null){
-            textView.setText(bundle.getString("Output"));
+            db.collection("Users").document(bundle.getString("Output")).get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            if(documentSnapshot != null){
+                                textView.setText(documentSnapshot.getString("name"));
+                            }
+                        }
+                    });
+
         }
 
         btn.setOnClickListener(new View.OnClickListener() {

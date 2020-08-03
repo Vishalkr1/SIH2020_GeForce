@@ -37,6 +37,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -53,7 +55,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener,
+RadiusDialog.ExampleDialogListener{
 
     private static final String TAG = "Sample";
     private static final String CHANNEL_ID = "NOTIFICATION";
@@ -66,7 +69,7 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
     private Double lat, lon;
     private AutoCompleteTextView mSearch;
     private ImageView imageButton;
-    private float GEOFENCE_RADIUS = 200;
+    private int GEOFENCE_RADIUS = 200;
     private GeofencingClient geofencingClient;
     private GeofenceHelper geofenceHelper;
     private String GEOFENCE_ID = "GEOFENCE_ID";
@@ -76,6 +79,7 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
     private double end_latitude, end_longitude;
     private String current_user;
     private double lmlatitude, lmlongitude;
+    private int GeofenceRadius;
 
 
 
@@ -148,8 +152,16 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
                             Log.d(TAG, "onEvent: " + end_longitude);
 
                             LatLng location = new LatLng(documentSnapshot.getDouble("latitude"), documentSnapshot.getDouble("longitude"));
+                            MarkerOptions mMarker = new MarkerOptions().position(location)
+                                    .title(getCOmpleteAddress(documentSnapshot.getDouble("latitude"), documentSnapshot.getDouble("longitude")));
+                            if(getDistance() <= GEOFENCE_RADIUS) {
+                                mMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                            }
+                            else{
+                                mMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                            }
 
-                            mMap.addMarker(new MarkerOptions().position(location).title(getCOmpleteAddress(documentSnapshot.getDouble("latitude"), documentSnapshot.getDouble("longitude"))));
+                            mMap.addMarker(mMarker);
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16F));
                         } else {
                             Log.e(TAG, "onEvent: Document snapshot was null");
@@ -216,23 +228,33 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
 
         } else {
             handleMapLongClick(latLng);
+
         }
 
     }
 
     private void handleMapLongClick(LatLng latLng) {
-        mMap.clear();
+//        mMap.clear();
         getCurrentLocation();
         start_latitude = latLng.latitude;
         start_longitude = latLng.longitude;
         getDistance();
         Log.d(TAG, "Distance is " + getDistance());
         addMarker(latLng);
+        Log.d(TAG, "handleMapLongClick: " + GEOFENCE_RADIUS);
         addCircle(latLng, GEOFENCE_RADIUS);
         addGeofence(latLng);
         saveLandmark(latLng);
+        //openDialog();
 
     }
+
+
+    private void openDialog() {
+        RadiusDialog exampledialog = new RadiusDialog();
+        exampledialog.show(getSupportFragmentManager(), "example dialog");
+    }
+
     private void saveLandmark(LatLng latLng){
 
         HashMap<String, Double> landmark = new HashMap<>();
@@ -312,6 +334,7 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
 
     private void addMarker(LatLng latLng){
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(getCOmpleteAddress(latLng.latitude, latLng.longitude));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
         mMap.addMarker(markerOptions);
         Toast.makeText(this,"Care receiver is " + getDistance() + "m away from landmark",Toast.LENGTH_SHORT).show();
 
@@ -337,19 +360,74 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
             channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DESCRIPTION");
             mNotificationManager.createNotificationChannel(channel);
         }
-        Intent intent = new Intent(getApplicationContext(), RetrieveMapActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ApproachCareReceiver.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Bundle data = new Bundle();
+        data.putString("email", bundle.getString("CRemail"));
+        intent.putExtras(data);
+        startActivity(intent);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
                 .setSmallIcon(R.drawable.ic_baseline_notifications_24) // notification icon
                 .setContentTitle(title) // title for notification
                 .setContentText(Content)// message for notification
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setFullScreenIntent(pi, true)
-                .setAutoCancel(true); // clear notification after click
+                .setAutoCancel(autocancel()); // clear notification after click
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
     }
+    private boolean autocancel(){
+        if(getDistance() >= GEOFENCE_RADIUS){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
+    private void getRadius(){
+
+        HashMap<String, Integer> rad = new HashMap<>();
+        rad.put("Radius", GeofenceRadius);
+        db.collection("Users").document(mAuth.getCurrentUser().getEmail())
+                .collection("people").document(bundle.getString("CRemail"))
+                .collection("landmark").document("landmark" + " radius").set(rad);
+
+//        db.collection("Users").document(mAuth.getCurrentUser().getEmail()).collection("people")
+//                .document(bundle.getString("CRemail")).collection("landmark").document("landmark radius").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+//
+//                if (e != null) {
+//                    Log.e(TAG, "onEvent: ", e);
+//                    return;
+//                }
+//                if (documentSnapshot != null) {
+//                    if (documentSnapshot.contains("Radius")) {
+////                        GEOFENCE_RADIUS = ((Long) documentSnapshot.get("Radius")).intValue();
+//                        Log.d(TAG, "onEvent: " + GEOFENCE_RADIUS);
+//                    }
+//                }else {
+//                    Log.e(TAG, "onEvent: Document snapshot was null");
+//                }
+//
+//
+//            }
+//
+//        });
+//
+////        return GEOFENCE_RADIUS;
+
+
+    }
+
+    @Override
+    public void applyText(String radius) {
+        GeofenceRadius = Integer.parseInt(radius);
+        GEOFENCE_RADIUS = GeofenceRadius;
+
+    }
 }
 

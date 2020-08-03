@@ -244,8 +244,8 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
                     String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                     mGoogleApiClient = new GoogleApiClient.Builder(this)
-                            .addConnectionCallbacks((GoogleApiClient.ConnectionCallbacks) this)
-                            .addOnConnectionFailedListener((GoogleApiClient.OnConnectionFailedListener) this)
+                            .addConnectionCallbacks(this)
+                            .addOnConnectionFailedListener(this)
                             .addApi(LocationServices.API)
                             .build();
                     mGoogleApiClient.connect();
