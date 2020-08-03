@@ -34,6 +34,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDfALSt2YyI57RHJPKME2CNUtyuyZXbBV8" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".MapsActivity"/>
@@ -42,6 +45,8 @@
         <activity android:name=".IntermediateActivity" />
         <activity android:name=".RetrieveMapActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".ApproachCareReceiver"/>
+        <activity android:name=".DirectionMap"/>
         <activity android:name="posthelp" />
         <activity android:name=".Login" />
  

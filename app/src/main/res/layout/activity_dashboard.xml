@@ -7,10 +7,21 @@
     android:background="#151515"
     tools:context=".DashboardActivity">
 
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/deleteuser"
+        android:visibility="invisible"
+        android:background="@drawable/delete"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp">
+
+    </Button>
+
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="188dp"
-        android:layout_height="125dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         app:srcCompat="@drawable/elder" />
@@ -19,20 +30,23 @@
         android:id="@+id/textView2"
         android:layout_width="349dp"
         android:layout_height="55dp"
-        android:fontFamily="sans-serif-smallcaps"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="170dp"
+        android:fontFamily="@font/aldrich"
+        android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textColor="#FFFF"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:gravity="center_horizontal" />
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
         android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
 
         >
         <LinearLayout
@@ -41,14 +55,14 @@
             android:orientation="horizontal"
             android:padding="20dp">
             <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="180dp"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
                 android:orientation="vertical"
                 android:layout_marginRight="60dp"
                 >
                 <Button
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginRight="50dp"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/temperature_icon"
@@ -64,21 +78,21 @@
                     android:textAlignment="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center_horizontal"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif-smallcaps"
+                    android:fontFamily="@font/aldrich"
                     android:textColor="#FFFF"/>
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="180dp"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
                 android:orientation="vertical"
                 >
                 <Button
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/heart_rate"
                     android:fontFamily="monospace"
                     android:textColor="#FFFFFF"
@@ -92,9 +106,9 @@
                     android:textAlignment="center"
                     android:layout_marginBottom="10dp"
                     android:gravity="center_horizontal"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif-smallcaps"
+                    android:fontFamily="@font/aldrich"
                     android:textColor="#FFFF"/>
             </LinearLayout>
 
@@ -107,15 +121,15 @@
             android:orientation="horizontal"
             android:padding="30dp">
             <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="180dp"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
                 android:orientation="vertical"
                 android:layout_marginRight="50dp"
                 >
                 <Button
                     android:id="@+id/retreiveMap"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/geofence"
                     android:fontFamily="monospace"
@@ -129,22 +143,22 @@
                     android:text="Geofence"
                     android:textAlignment="center"
                     android:gravity="center_horizontal"
-                    android:textSize="30dp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif-smallcaps"
+                    android:fontFamily="@font/aldrich"
                     android:textColor="#FFFF"
                     />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="180dp"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
                 android:orientation="vertical"
                 >
                 <Button
                     android:id="@+id/medschedule"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="15dp"
                     android:background="@drawable/two"
                     android:fontFamily="monospace"
@@ -156,10 +170,10 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:gravity="center_horizontal"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:text="Malady"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif-smallcaps"
+                    android:fontFamily="@font/aldrich"
                     android:textColor="#FFFF"/>
             </LinearLayout>
 

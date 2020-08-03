@@ -320,9 +320,14 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
         CircleOptions circleOptions = new CircleOptions();
         circleOptions.center(latLng);
         circleOptions.radius(radius);
-        circleOptions.strokeColor(Color.argb(255,255,0,0));
-        circleOptions.fillColor(Color.argb(50,255,0,0));
         circleOptions.strokeWidth(4);
+        circleOptions.strokeColor(Color.argb(255,255,0,0));
+        if(getDistance()>=GEOFENCE_RADIUS){
+            circleOptions.fillColor(Color.argb(50,255,0,0));
+        }
+        else{
+            circleOptions.fillColor(Color.argb(50,0,255,0));
+        }
         mMap.addCircle(circleOptions);
 
     }
@@ -337,18 +342,32 @@ public class RetrieveMapActivity extends FragmentActivity implements OnMapReadyC
             channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DESCRIPTION");
             mNotificationManager.createNotificationChannel(channel);
         }
-        Intent intent = new Intent(getApplicationContext(), RetrieveMapActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ApproachCareReceiver.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Bundle data = new Bundle();
+        data.putString("email", bundle.getString("CRemail"));
+        intent.putExtras(data);
+        startActivity(intent);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
                 .setSmallIcon(R.drawable.ic_baseline_notifications_24) // notification icon
                 .setContentTitle(title) // title for notification
                 .setContentText(Content)// message for notification
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setFullScreenIntent(pi, true)
-                .setAutoCancel(true); // clear notification after click
+                .setAutoCancel(autocancel()); // clear notification after click
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(0, mBuilder.build());
+    }
+
+    private boolean autocancel(){
+        if(getDistance() >= GEOFENCE_RADIUS){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
 

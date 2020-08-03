@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/et_password"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="255dp"
+        android:layout_marginTop="111dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/loginrnd"
-        android:layout_centerHorizontal="true"
         android:fontFamily="@font/roboto_regular"
         android:text="New user!! Register here"
         android:textColor="@android:color/white" />

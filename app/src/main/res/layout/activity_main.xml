@@ -8,10 +8,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Login">
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="86dp"
         app:srcCompat="@drawable/logo_bg" />
 
     <EditText
