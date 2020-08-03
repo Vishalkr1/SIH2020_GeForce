@@ -1,116 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#151515">
+    android:background="#151515"
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/emergency2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginBottom="39dp"
-        android:background="@drawable/six"
-        android:onClick="onDialEmergency2"
-        android:text="EMERGENCY\n100"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/emergency3"
-        app:layout_constraintEnd_toStartOf="@+id/ambulance"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/covid19help"
-        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:text="Help Desk"
+        android:textAlignment="center"
+        android:padding="30dp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
+        android:fontFamily="sans-serif-smallcaps"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="61dp"
+        android:gravity="center_horizontal" />
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="35dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/doctor"
+            android:layout_width="150dp"
+            android:layout_marginRight="47dp"
+            android:layout_height="132dp"
+            android:background="@drawable/six"
+            android:onClick="onDialEmergency2"
+            android:textColor="#ffffff"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="348dp" />
 
-    <Button
-        android:id="@+id/emergency"
-        android:layout_width="0dp"
-        android:layout_height="0dp" 
-        android:layout_marginTop="151dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:layout_marginBottom="58dp"
-        android:background="@drawable/seven"
-        android:onClick="onDialemergency"
-        android:text="EMERGENCY\n100"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/ambulance"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/covid19help"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/covid19help"
+            android:layout_width="150dp"
+            android:layout_height="132dp"
+            android:background="@drawable/one"
+            android:onClick="onDialPoison"
+            android:textColor="#ffffff"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="154dp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/ambulance"
+            android:layout_width="150dp"
+            android:layout_height="132dp"
+            android:layout_marginRight="47dp"
+            android:background="@drawable/five"
+            android:onClick="onDialEmergencyManagement"
+            android:textColor="#ffffff"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="256dp"
+            tools:layout_editor_absoluteY="355dp" />
+
+        <Button
+            android:id="@+id/emergency"
+            android:layout_width="150dp"
+            android:layout_height="132dp"
+            android:background="@drawable/seven"
+            android:onClick="onDialEmergency"
+            android:textColor="#ffffff"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="224dp"
+            tools:layout_editor_absoluteY="154dp" />
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/emergency3"
-        android:layout_width="155dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="33dp"
+        android:layout_width="150dp"
+        android:layout_height="132dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="131dp"
         android:background="@drawable/taker2"
         android:onClick="onDialemergency3"
-        android:text="Call Care Taker"
         android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emergency2"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/covid19help"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="154dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/one"
-        android:onClick="onDialPoison"
-        android:text="Covid19 Helpline\n1075"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/emergency2"
-        app:layout_constraintEnd_toStartOf="@+id/emergency"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/ambulance"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:layout_marginBottom="208dp"
-        android:background="@drawable/five"
-        android:onClick="onDialEmergencyManagement"
-        android:text="Ambulance\n108"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/emergency2"
-        app:layout_constraintTop_toBottomOf="@+id/emergency"
-        tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="263dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="170dp"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginRight="184dp"
-        android:layout_marginBottom="52dp"
-        android:text="         Help Desk"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/emergency"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="528dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
