@@ -63,8 +63,7 @@ public class ApproachCareReceiver extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(ApproachCareReceiver.this, DirectionMap.class);
-                intent.putExtra("origin",getOrigin());
-                intent.putExtra("destination", getDestination());
+                intent.putExtra("receiverEmail", mbundle.getString("email"));
                 startActivity(intent);
 
 //                DisplayTrack(getOrigin(), getDesination());
