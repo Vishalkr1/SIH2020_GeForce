@@ -20,7 +20,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="15dp"
             android:paddingLeft="5dp"
-            android:src="@drawable/contact">
+            android:src="@drawable/user_green">
 
         </ImageView>
 
@@ -31,7 +31,9 @@
             android:layout_marginRight="16dp"
             android:paddingTop="5dp"
             android:text="Name"
-            android:textSize="20sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,14 +46,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="#"
-                android:textColor="#d95d91" />
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@"
-                android:textColor="#d95d91" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,14 +68,19 @@
                 android:layout_width="227dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/adapter_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

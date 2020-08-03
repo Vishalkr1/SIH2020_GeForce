@@ -129,9 +129,7 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
             @Override
             public void onClick(View view) {
                 openposthelpactivity();
-                Toast.makeText(HomeActivity.this,"abcd",Toast.LENGTH_SHORT).show();
                 sendsmsmessage();
-                Toast.makeText(HomeActivity.this,"efgh",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -140,9 +138,6 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
             public void onClick(View view) {
                 final String temp = temperature.getText().toString();
                 final String HearRate = heartRate.getText().toString();
-                Intent i=new Intent(HomeActivity.this, DashboardActivity.class);
-                i.putExtra("teh",temp);
-                i.putExtra("rate",HearRate);
                 HealthdataHelper health = new HealthdataHelper(
                         temp + "ᵒC",
                         HearRate + "bpm"
@@ -223,6 +218,7 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
 
     private void openposthelpactivity() {
         Intent intent = new Intent(this,posthelp.class);
+        Toast.makeText(HomeActivity.this,"Alert For Help Sent",Toast.LENGTH_SHORT).show();
         startActivity(intent);
 
     }
@@ -333,7 +329,7 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Toast.makeText(this, "At OnConnected", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "At OnConnected", Toast.LENGTH_SHORT).show();
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
@@ -348,9 +344,10 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
 
         if (mLocation == null) {
             startLocationUpdates();
-        } else {
-            Toast.makeText(this, "Location not Detected", Toast.LENGTH_SHORT).show();
         }
+//         else {
+//            Toast.makeText(this, "Location not Detected", Toast.LENGTH_SHORT).show();
+//        }
 
     }
 

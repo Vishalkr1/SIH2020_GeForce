@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,15 @@ public class DashboardActivity extends AppCompatActivity {
     private static final String TAG = "Sample";
     TextView textView;
     Button btn;
+    TextView rate;
+    TextView temper;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    Button med;
+    String temp;
+    String hat;
+
+
     public Bundle bundle;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
@@ -38,6 +48,10 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         textView = findViewById(R.id.textView2);
         btn = findViewById(R.id.retreiveMap);
+        mAuth = FirebaseAuth.getInstance();
+        this.db = FirebaseFirestore.getInstance();
+        temper = findViewById(R.id.temp);
+        rate = findViewById(R.id.heart);
         bundle = getIntent().getExtras();
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -54,7 +68,6 @@ public class DashboardActivity extends AppCompatActivity {
                     });
 
         }
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,5 +77,6 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }
