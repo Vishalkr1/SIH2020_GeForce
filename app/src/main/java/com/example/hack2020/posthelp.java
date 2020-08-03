@@ -32,7 +32,7 @@ public class posthelp extends HomeActivity {
     Button emergency;
     Button ambulance;
     Button covid19help;
-    Button emergency2;
+    Button doctor;
     Button emergency3;
     public String phonenums;
     private FirebaseFirestore db;
@@ -61,7 +61,7 @@ public class posthelp extends HomeActivity {
         emergency = findViewById(R.id.emergency);
         ambulance = findViewById(R.id.ambulance);
         covid19help = findViewById(R.id.covid19help);
-        emergency2 = findViewById(R.id.emergency2);
+        doctor = findViewById(R.id.doctor);
         emergency3 = findViewById(R.id.emergency3);
     }
 
@@ -89,11 +89,10 @@ public class posthelp extends HomeActivity {
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phonenums, null));
         startActivity(intent);
     }
-    public void onDialemergency2(View v){
+    public void onDialEmergency2(View v){
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:1800-180-1253"));
         startActivity(intent);
-    }
+  }
 
 }
-
