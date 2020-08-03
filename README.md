@@ -39,7 +39,7 @@ A help button is present on the care receiver side that alarms the care taker in
 <img src="./readme-ss/SS5.jpeg" width="40%" height="50%">
 
 #### 6. Emergency notification from care receivers
-<img src="./readme-ss/SS6.png" width="40%" height="50%">
+<img src="./readme-ss/SS6.jpeg" width="40%" height="50%">
 
 
 ### Care Receiver Screen
