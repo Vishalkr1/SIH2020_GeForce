@@ -1,13 +1,17 @@
 package com.example.hack2020;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -19,6 +23,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +50,8 @@ public class DirectionMap extends FragmentActivity implements OnMapReadyCallback
     private LatLng mOrigin;
     private LatLng mDestination;
     public Bundle mbundle;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,11 @@ public class DirectionMap extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 
         mbundle = getIntent().getExtras();
+        mAuth = FirebaseAuth.getInstance();
+        this.db = FirebaseFirestore.getInstance();
+        mbundle = getIntent().getExtras();
+
+        Log.d(TAG, "onCreate: " + mbundle.getString("receiverEmail"));
 
         mOrigin = new LatLng(26.8774286, 80.9492169);
         mDestination = new LatLng(26.0648553, 85.9116378);
@@ -84,10 +100,11 @@ public class DirectionMap extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
         // Show marker on the screen and adjust the zoom level
-        mMap.addMarker(new MarkerOptions().position(mOrigin).title("Origin"));
-        mMap.addMarker(new MarkerOptions().position(mDestination).title("Destination"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mOrigin,8f));
-        new TaskDirectionRequest().execute(buildRequestUrl(mOrigin,mDestination));
+//        mMap.addMarker(new MarkerOptions().position(getOrigin()).title("Origin"));
+//        mMap.addMarker(new MarkerOptions().position(getDestination()).title("Destination"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getOrigin(),8f));
+//        new TaskDirectionRequest().execute(buildRequestUrl(getOrigin(),getDestination()));
+        DisplayTrack(getOrigin(), getDestination());
     }
 
     /**
@@ -234,6 +251,63 @@ public class DirectionMap extends FragmentActivity implements OnMapReadyCallback
                     new String[]{permission},
                     MY_PERMISSIONS_REQUEST);
         }
+    }
+
+    private void DisplayTrack(LatLng origin, LatLng destination) {
+        try {
+            Uri uri = Uri.parse("http://maps.google.com/maps?saddr=" + origin.latitude +","+origin.longitude +"&daddr="
+                    + destination.latitude + "," + destination.longitude);
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+            intent.setPackage("com.google.android.apps.maps");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } catch (ActivityNotFoundException e){
+            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.maps");
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+    }
+
+    private LatLng getOrigin() {
+        if (mbundle != null) {
+            db.collection("Users").document(mAuth.getCurrentUser().getEmail())
+                    .collection("My data").document("Current location").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    if (documentSnapshot != null) {
+                        if (documentSnapshot.contains("latitude") && documentSnapshot.contains("longitude")) {
+                            mOrigin = new LatLng(documentSnapshot.getDouble("latitude"), documentSnapshot.getDouble("longitude"));
+                            Log.d(TAG, "onEvent: origin " + mOrigin);
+                        }
+                    }
+                }
+            });
+
+
+        }
+        return mOrigin;
+    }
+
+    private LatLng getDestination() {
+
+
+        if (mbundle != null) {
+            db.collection("Users").document(mbundle.getString("receiverEmail")).collection("My data")
+                    .document("Current location").addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                    if (documentSnapshot != null) {
+                        if (documentSnapshot.contains("latitude") && documentSnapshot.contains("longitude")) {
+                            mDestination = new LatLng(documentSnapshot.getDouble("latitude"), documentSnapshot.getDouble("longitude"));
+                            Log.d(TAG, "onEvent: destination" + mDestination);
+                        }
+                    }
+                }
+            });
+
+        }
+        return mDestination;
     }
 
 
