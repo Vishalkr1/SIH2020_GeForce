@@ -40,7 +40,7 @@ import java.util.List;
 public class ApproachCareReceiver extends AppCompatActivity {
 
     private static final String TAG = "ApproachCareReceiver";
-    private Button btnNavigate;
+    private Button btnNavigate, call;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private LatLng origin, desination;
@@ -57,6 +57,7 @@ public class ApproachCareReceiver extends AppCompatActivity {
 
         mbundle = getIntent().getExtras();
         Log.d(TAG, "onCreate: " + mbundle.getString("email"));
+        call = findViewById(R.id.calling);
         btnNavigate = findViewById(R.id.navigate);
         btnNavigate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +71,15 @@ public class ApproachCareReceiver extends AppCompatActivity {
 //                String url = getRequestURL(getOrigin(), getDesination());
 //                TaskRequestDirection taskRequestDirection = new TaskRequestDirection();
 //                taskRequestDirection.execute(url);
+            }
+        });
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:6203831026"));
+                startActivity(intent);
             }
         });
     }

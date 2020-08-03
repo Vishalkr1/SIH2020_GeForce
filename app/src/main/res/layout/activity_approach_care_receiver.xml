@@ -31,4 +31,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.763"
         app:srcCompat="@drawable/elder" />
+
+    <Button
+        android:id="@+id/calling"
+        android:layout_width="163dp"
+        android:layout_height="58dp"
+        android:background="#F4511E"
+        android:text="call care receiver"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/navigate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.902" />
 </androidx.constraintlayout.widget.ConstraintLayout>
