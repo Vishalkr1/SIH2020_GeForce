@@ -4,181 +4,341 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#151515"
-    tools:context=".DashboardActivity">
+    tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/deleteuser"
-        android:visibility="invisible"
-        android:background="@drawable/delete"
-        android:layout_alignParentRight="true"
-        android:layout_margin="10dp">
-
-    </Button>
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        app:srcCompat="@drawable/elder" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="349dp"
-        android:layout_height="55dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
-        android:fontFamily="@font/aldrich"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        android:textColor="#FFFF"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
-        android:orientation="vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp"
-
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="20dp">
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:orientation="vertical"
-                android:layout_marginRight="60dp"
-                >
-                <Button
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/temperature_icon"
-                    android:fontFamily="monospace"
-                    android:textColor="#FFFFFF"
-                    tools:layout_editor_absoluteX="227dp"
-                    tools:layout_editor_absoluteY="280dp" />
-
-                <TextView
-                    android:id="@+id/temp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_horizontal"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/aldrich"
-                    android:textColor="#FFFF"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:orientation="vertical"
-                >
-                <Button
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/heart_rate"
-                    android:fontFamily="monospace"
-                    android:textColor="#FFFFFF"
-                    tools:layout_editor_absoluteX="227dp"
-                    tools:layout_editor_absoluteY="280dp" />
-
-                <TextView
-                    android:id="@+id/heart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center_horizontal"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/aldrich"
-                    android:textColor="#FFFF"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/gradient">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="30dp">
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:orientation="vertical"
-                android:layout_marginRight="50dp"
-                >
-                <Button
-                    android:id="@+id/retreiveMap"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/geofence"
-                    android:fontFamily="monospace"
-                    android:textColor="#FFFFFF"
-                    tools:layout_editor_absoluteX="227dp"
-                    tools:layout_editor_absoluteY="280dp" />
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            >
 
-                <TextView
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/profile" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="0dp"
+                        android:text="Vishal"
+                        android:textColor="#ffffff"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:fontFamily="@font/acme" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="0dp"
+                        android:text="kumarvishal07442@gmail.com"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        app:fontFamily="monospace" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="6203831026"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Geofence"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/aldrich"
-                    android:textColor="#FFFF"
-                    />
-            </LinearLayout>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="251dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:orientation="vertical"
-                >
-                <Button
-                    android:id="@+id/medschedule"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/two"
-                    android:fontFamily="monospace"
-                    android:textColor="#FFFFFF"
-                    tools:layout_editor_absoluteX="227dp"
-                    tools:layout_editor_absoluteY="280dp" />
-                <TextView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="#E1FFAB00"
+                            app:cardCornerRadius="30dp"
+                            app:cardElevation="4dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="10dp"
+                            app:cardMaxElevation="6dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView1"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="20dp"
+                                    android:src="@drawable/temperature_icon" />
+
+                                <TextView
+                                    android:id="@+id/tempTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/imageView1"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Body Temperature"
+                                    android:textColor="#DBD9E1"
+                                    android:textStyle="bold"
+                                    app:fontFamily="monospace" />
+
+                                <TextView
+                                    android:id="@+id/tempValTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/tempTV"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="35 C"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    app:fontFamily="monospace" />
+
+                                <Button
+                                    android:id="@+id/tempBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent" />
+
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:cardCornerRadius="30dp"
+                            android:layout_marginRight="10dp"
+                            app:cardBackgroundColor="#DF6200EA"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView2"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="20dp"
+                                    android:src="@drawable/heart_rate" />
+
+                                <TextView
+                                    android:id="@+id/heartTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/imageView2"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Heart Rate"
+                                    android:textColor="#DBD9E1"
+                                    android:textStyle="bold"
+                                    app:fontFamily="monospace"/>
+
+                                <TextView
+                                    android:id="@+id/heartValTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/heartTV"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="80 BPM"
+                                    android:textColor="#DBD9E1"
+                                    android:textStyle="bold"
+                                    app:fontFamily="monospace"/>
+
+                                <Button
+                                    android:id="@+id/heartBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent" />
+
+
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:gravity="center_horizontal"
-                    android:textSize="25sp"
-                    android:text="Malady"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/aldrich"
-                    android:textColor="#FFFF"/>
-            </LinearLayout>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="430dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            app:cardBackgroundColor="#A3B60F57"
+                            app:cardCornerRadius="30dp"
+                            app:cardElevation="4dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="10dp"
+                            app:cardMaxElevation="6dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView3"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="20dp"
+                                    android:src="@drawable/bp" />
+
+                                <TextView
+                                    android:id="@+id/BPTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/imageView3"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Blood Pressure"
+                                    android:textColor="#DBD9E1"
+                                    android:textStyle="bold"
+                                    app:fontFamily="monospace" />
+
+                                <TextView
+                                    android:id="@+id/BPValTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/BPTV"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="5dp"
+                                    android:text="120/180"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    app:fontFamily="monospace" />
+
+                                <Button
+                                    android:id="@+id/BPBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent" />
+
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            app:cardCornerRadius="30dp"
+                            android:layout_marginRight="10dp"
+                            app:cardBackgroundColor="#F05BD80C"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView4"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="20dp"
+                                    android:src="@drawable/geofence2" />
+
+                                <TextView
+                                    android:id="@+id/geofenceTV"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@id/imageView4"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="Geo Fence"
+                                    android:textSize="20sp"
+                                    android:textColor="@color/cardview_light_background"
+                                    android:textStyle="bold"
+                                    app:fontFamily="monospace"/>
+
+                                <Button
+                                    android:id="@+id/geofenceBtn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent" />
+
+
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
 </RelativeLayout>
