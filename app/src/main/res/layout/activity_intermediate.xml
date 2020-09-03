@@ -3,33 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:visibility="invisible"
     android:layout_height="match_parent"
+    android:background="#151515"
     tools:context=".IntermediateActivity">
 
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-android:id="@+id/addUser"
-android:layout_width="66dp"
-android:layout_height="56dp"
-android:clickable="true"
-app:backgroundTint="#8E0936"
-app:layout_constraintBottom_toBottomOf="parent"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.498"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent"
-app:layout_constraintVertical_bias="0.952"
-app:srcCompat="@android:drawable/ic_input_add" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="219dp"
+        android:layout_height="218dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logowithoutname" />
 
-<Button
-android:id="@+id/button2"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:layout_marginBottom="32dp"
-android:text="log out"
-app:layout_constraintBottom_toTopOf="@+id/addUser"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintHorizontal_bias="0.498"
-app:layout_constraintStart_toStartOf="parent" />
-
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="125dp"
+        android:layout_height="41dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center_horizontal"
+        android:text="DRISHTI"
+        android:textAlignment="center"
+        android:textColor="#FFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617" />
 </androidx.constraintlayout.widget.ConstraintLayout>
