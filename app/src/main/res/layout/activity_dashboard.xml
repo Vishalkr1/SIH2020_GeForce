@@ -44,6 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="0dp"
+                        android:fontFamily="@font/acme"
                         android:text="Vishal"
                         android:textColor="#ffffff"
                         android:textSize="24sp"

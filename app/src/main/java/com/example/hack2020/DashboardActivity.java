@@ -45,11 +45,11 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         textView = findViewById(R.id.textView2);
-        btn = findViewById(R.id.retreiveMap);
+        btn = findViewById(R.id.geofenceBtn);
         mAuth = FirebaseAuth.getInstance();
         this.db = FirebaseFirestore.getInstance();
-        temper = findViewById(R.id.temp);
-        rate = findViewById(R.id.heart);
+        temper = findViewById(R.id.tempValTV);
+        rate = findViewById(R.id.heartValTV);
         bundle = getIntent().getExtras();
         if(bundle != null) {
             db.collection("Users").document(bundle.getString("Output")).get()
