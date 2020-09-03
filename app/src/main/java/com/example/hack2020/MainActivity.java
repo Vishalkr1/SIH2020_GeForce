@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tvSignUp;
     FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
 
 
 //    public Login(FirebaseAuth.AuthStateListener mAuthStateListener) {
@@ -109,12 +111,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
     @Override
     protected void onStart() {
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            finish();
+            System.exit(0);
+            return;
+        }
+        else { Toast.makeText(getBaseContext(), "Press back again in order to exit", Toast.LENGTH_SHORT).show(); }
+        mBackPressed = System.currentTimeMillis();
     }
 }

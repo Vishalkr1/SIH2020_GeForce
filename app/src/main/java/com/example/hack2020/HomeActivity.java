@@ -77,6 +77,8 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
     private long onBackPressedTime;
     private Toast backToast;
     private List<String>list;
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
     String TAG = "Sample";
     double phoneNum;
     User self;
@@ -431,7 +433,20 @@ public class HomeActivity<phoneNo> extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    public void onBackPressed() {
-        finish();
+    public void onBackPressed()
+    {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            finish();
+            System.exit(0);
+            return;
+        }
+        else { Toast.makeText(getBaseContext(), "Press back again in order to exit", Toast.LENGTH_SHORT).show(); }
+
+        mBackPressed = System.currentTimeMillis();
     }
 }
